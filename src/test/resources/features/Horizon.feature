@@ -10,5 +10,6 @@ Feature: Horizon
      And land on the dashboard page
 Examples:
     |username  |  password|errormessage|
+    |"mnyinyi@client.co.za" |"10Collections123"|Invalid username or password.|
     |"mnyinyi@clientele.co.za" |"10Collections123"|Invalid username or password.|
 
