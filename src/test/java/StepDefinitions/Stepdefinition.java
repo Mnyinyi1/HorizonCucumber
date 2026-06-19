@@ -1,41 +1,58 @@
 package StepDefinitions;
 
+
+import Utils.Base;
+import Utils.TakeScreenshots;
+import io.cucumber.java.After;
 import io.cucumber.java.en.*;
 
-public class Stepdefinition {
+
+
+public class Stepdefinition extends Base {
+
     @Given("the user  has navigated to the login page")
     public void the_user_has_navigated_to_the_login_page() {
 
     }
 
-    @When("the user enters userName \"\"mnyinyi@clientele.co.za\"\"")
-    public void the_user_enters_user_name_mnyinyi_clientele_co_za() {
+    @When("the user enters username {string}")
+    public void the_user_enters_username(String username) {
 
+        loginPage.EnterUsername(username);
     }
 
-    @And("the user enters password \"\"10Collections123\"\"")
-    public void the_user_enters_password_10collections123() {
+    @When("the user enters password {string}")
+    public void the_user_enters_password(String password) {
 
+        loginPage.EnterPassword(password);
     }
-    @And("clicks on the login button")
+
+    @When("clicks on the login button")
     public void clicks_on_the_login_button() {
-
-    }
-    @And("user should see error message {string}")
-    public void user_should_see_error_message(String string) {
-
-    }
-    @Then("the user should be able to login successfully")
-    public void the_user_should_be_able_to_login_successfully() {
-
+        loginPage.clickSignUp();
 
     }
 
-    @And("land on the dashboard page")
-    public void land_on_the_dashboard_page() {
+    @When("user should see error message {string}")
+    public void user_should_see_error_message(String errorMessage) {
 
+        loginPage.DisplayError(errorMessage);
     }
 
+//    @Then("the user should be able to login successfully")
+//    public void the_user_should_be_able_to_login_successfully() throws InterruptedException {
+//        homePage.verifyInformationBoxIsDisplayed();
+//
+//    }
 
 
+    @After
+    public void closeBrowser() {
+        TakeScreenshots.takeScreenshot(driver, "End_of_Scenario"); // Add this line
+        driver.close();
+    }
 }
+
+
+
+
