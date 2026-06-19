@@ -9,7 +9,7 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 
 
 public class BrowserFactory {
-    static WebDriver driver;
+   public static WebDriver driver;
 
     public static WebDriver startbrowser(String browserchoice, String url) {
         switch (browserchoice.toLowerCase()) {
