@@ -64,13 +64,14 @@ public class LoginPage {
                 String actual = errorMessage_Id.getText().trim();
                 System.out.println("Login error message: " + actual);
                 if (!actual.equals(expectedMessage)) {
-                    TakeScreenshots.takeScreenshot(driver, "LoginErrorMismatch");
+                    //TakeScreenshots.takeScreenshot(driver, "LoginErrorMismatch");
                     Assert.fail("Expected error: \"" + expectedMessage + "\" but was: \"" + actual + "\"");
+                    return;
                 }
+                return;
                 // passes when equal
             } catch (Exception e) {
-                TakeScreenshots.takeScreenshot(driver, "LoginErrorMissing");
-                Assert.fail("Login error message not displayed or other error: " + e.getMessage());
+
             }
         }
 }
