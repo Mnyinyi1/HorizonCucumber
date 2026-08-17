@@ -9,8 +9,8 @@ import io.cucumber.testng.CucumberOptions;
         glue = {"StepDefinitions"},
         plugin =
                 {"pretty", "html:target/cucumber-reports.html", "com.aventstack.extentreports.cucumber.adapter.ExtentCucumberAdapter:"},
-        monochrome = true
-        //tags = "@Generateinvoice"
+        monochrome = true,
+        tags = "@Quote"
 )
 public class TestRunner extends AbstractTestNGCucumberTests {
 
