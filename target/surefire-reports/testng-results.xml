@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testng-results ignored="0" total="1" passed="0" failed="1" skipped="0">
+  <reporter-output>
+  </reporter-output>
+  <suite started-at="2026-09-04T11:25:02 SAST" name="Surefire suite" finished-at="2026-09-04T11:26:38 SAST" duration-ms="96010">
+    <groups>
+      <group name="cucumber">
+        <method signature="AbstractTestNGCucumberTests.runScenario(io.cucumber.testng.PickleWrapper,io.cucumber.testng.FeatureWrapper)[pri:0, instance:TestRunners.TestRunner@333291e3]" name="runScenario" class="io.cucumber.testng.AbstractTestNGCucumberTests"/>
+      </group> <!-- cucumber -->
+    </groups>
+    <test started-at="2026-09-04T11:25:02 SAST" name="Surefire test" finished-at="2026-09-04T11:26:38 SAST" duration-ms="96010">
+      <class name="TestRunners.TestRunner">
+        <test-method is-config="true" signature="setUpClass(org.testng.ITestContext)[pri:0, instance:TestRunners.TestRunner@333291e3]" started-at="2026-09-04T11:25:02 SAST" name="setUpClass" finished-at="2026-09-04T11:25:04 SAST" duration-ms="1924" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[org.testng.TestRunner@66a8751a]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setUpClass -->
+        <test-method signature="runScenario(io.cucumber.testng.PickleWrapper,io.cucumber.testng.FeatureWrapper)[pri:0, instance:TestRunners.TestRunner@333291e3]" started-at="2026-09-04T11:25:04 SAST" name="runScenario" description="Runs Cucumber Scenarios" data-provider="scenarios" finished-at="2026-09-04T11:26:31 SAST" duration-ms="87149" status="FAIL">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA["As User I want to be able to capture Quote"]]>
+              </value>
+            </param>
+            <param index="1">
+              <value>
+                <![CDATA["Horizon"]]>
+              </value>
+            </param>
+          </params>
+          <exception class="org.openqa.selenium.StaleElementReferenceException">
+            <message>
+              <![CDATA[stale element reference: stale element not found in the current frame
+  (Session info: chrome=152.0.7977.65)
+For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#staleelementreferenceexception
+Build info: version: '4.44.0', revision: 'da2039b'
+System info: os.name: 'Windows 11', os.arch: 'amd64', os.version: '10.0', java.version: '21.0.6'
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Command: [f2779bb2c8fd9c6983eaaaa247b482e4, getElementText {id=f.E04283DD3DAF508A16BA3AF96EA7460A.d.4AB9D11584687DF8B84C15AC42189BB5.e.1020}]
+Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 152.0.7977.65, chrome: {chromedriverVersion: 152.0.7977.82 (d04cdb24d67b..., userDataDir: C:\Users\MNyinyi\AppData\Lo...}, fedcm:accounts: true, goog:chromeOptions: {debuggerAddress: localhost:60480}, goog:processID: 18656, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: windows, proxy: Proxy(), se:cdp: ws://localhost:60480/devtoo..., se:cdpVersion: 152.0.7977.65, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}
+Element: [[ChromeDriver: chrome on windows (f2779bb2c8fd9c6983eaaaa247b482e4)] -> xpath: //div[contains(@class,'rz-notification-content')]]
+Session ID: f2779bb2c8fd9c6983eaaaa247b482e4]]>
+            </message>
+            <full-stacktrace>
+              <![CDATA[org.openqa.selenium.StaleElementReferenceException: stale element reference: stale element not found in the current frame
+  (Session info: chrome=152.0.7977.65)
+For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#staleelementreferenceexception
+Build info: version: '4.44.0', revision: 'da2039b'
+System info: os.name: 'Windows 11', os.arch: 'amd64', os.version: '10.0', java.version: '21.0.6'
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Command: [f2779bb2c8fd9c6983eaaaa247b482e4, getElementText {id=f.E04283DD3DAF508A16BA3AF96EA7460A.d.4AB9D11584687DF8B84C15AC42189BB5.e.1020}]
+Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 152.0.7977.65, chrome: {chromedriverVersion: 152.0.7977.82 (d04cdb24d67b..., userDataDir: C:\Users\MNyinyi\AppData\Lo...}, fedcm:accounts: true, goog:chromeOptions: {debuggerAddress: localhost:60480}, goog:processID: 18656, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: windows, proxy: Proxy(), se:cdp: ws://localhost:60480/devtoo..., se:cdpVersion: 152.0.7977.65, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}
+Element: [[ChromeDriver: chrome on windows (f2779bb2c8fd9c6983eaaaa247b482e4)] -> xpath: //div[contains(@class,'rz-notification-content')]]
+Session ID: f2779bb2c8fd9c6983eaaaa247b482e4
+at org.openqa.selenium.remote.ErrorCodec.decode(ErrorCodec.java:169)
+at org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:143)
+at org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:50)
+at org.openqa.selenium.remote.HttpCommandExecutor.execute(HttpCommandExecutor.java:224)
+at org.openqa.selenium.remote.service.DriverCommandExecutor.invokeExecute(DriverCommandExecutor.java:217)
+at org.openqa.selenium.remote.service.DriverCommandExecutor.execute(DriverCommandExecutor.java:175)
+at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:600)
+at org.openqa.selenium.remote.RemoteWebElement.execute(RemoteWebElement.java:225)
+at org.openqa.selenium.remote.RemoteWebElement.getText(RemoteWebElement.java:193)
+at PageObjects.HomePage.capturePolicyNumber(HomePage.java:830)
+at StepDefinitions.Stepdefinition.userNavigateToSummaryAndClickOnSubmitButton(Stepdefinition.java:160)
+at ✽.user Navigate to Summary and Click on submit button(file:///C:/Users/MNyinyi/Automation/CucumberHorizon/src/test/resources/features/Horizon.feature:27)
+]]>
+            </full-stacktrace>
+          </exception> <!-- org.openqa.selenium.StaleElementReferenceException -->
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- runScenario -->
+        <test-method is-config="true" signature="tearDownClass()[pri:0, instance:TestRunners.TestRunner@333291e3]" started-at="2026-09-04T11:26:31 SAST" name="tearDownClass" finished-at="2026-09-04T11:26:38 SAST" duration-ms="6831" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- tearDownClass -->
+      </class> <!-- TestRunners.TestRunner -->
+    </test> <!-- Surefire test -->
+  </suite> <!-- Surefire suite -->
+</testng-results>

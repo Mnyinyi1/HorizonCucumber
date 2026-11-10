@@ -1,0 +1,29 @@
+-------------------------------------------------------------------------------
+Test set: TestRunners.TestRunner
+-------------------------------------------------------------------------------
+Tests run: 1, Failures: 1, Errors: 0, Skipped: 0, Time elapsed: 97.96 s <<< FAILURE! - in TestRunners.TestRunner
+TestRunners.TestRunner.runScenario["As User I want to be able to capture Quote", "Horizon"](1)  Time elapsed: 87.273 s  <<< FAILURE!
+org.openqa.selenium.StaleElementReferenceException: 
+stale element reference: stale element not found in the current frame
+  (Session info: chrome=152.0.7977.65)
+For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#staleelementreferenceexception
+Build info: version: '4.44.0', revision: 'da2039b'
+System info: os.name: 'Windows 11', os.arch: 'amd64', os.version: '10.0', java.version: '21.0.6'
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Command: [f2779bb2c8fd9c6983eaaaa247b482e4, getElementText {id=f.E04283DD3DAF508A16BA3AF96EA7460A.d.4AB9D11584687DF8B84C15AC42189BB5.e.1020}]
+Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 152.0.7977.65, chrome: {chromedriverVersion: 152.0.7977.82 (d04cdb24d67b..., userDataDir: C:\Users\MNyinyi\AppData\Lo...}, fedcm:accounts: true, goog:chromeOptions: {debuggerAddress: localhost:60480}, goog:processID: 18656, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: windows, proxy: Proxy(), se:cdp: ws://localhost:60480/devtoo..., se:cdpVersion: 152.0.7977.65, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}
+Element: [[ChromeDriver: chrome on windows (f2779bb2c8fd9c6983eaaaa247b482e4)] -> xpath: //div[contains(@class,'rz-notification-content')]]
+Session ID: f2779bb2c8fd9c6983eaaaa247b482e4
+	at org.openqa.selenium.remote.ErrorCodec.decode(ErrorCodec.java:169)
+	at org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:143)
+	at org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:50)
+	at org.openqa.selenium.remote.HttpCommandExecutor.execute(HttpCommandExecutor.java:224)
+	at org.openqa.selenium.remote.service.DriverCommandExecutor.invokeExecute(DriverCommandExecutor.java:217)
+	at org.openqa.selenium.remote.service.DriverCommandExecutor.execute(DriverCommandExecutor.java:175)
+	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:600)
+	at org.openqa.selenium.remote.RemoteWebElement.execute(RemoteWebElement.java:225)
+	at org.openqa.selenium.remote.RemoteWebElement.getText(RemoteWebElement.java:193)
+	at PageObjects.HomePage.capturePolicyNumber(HomePage.java:830)
+	at StepDefinitions.Stepdefinition.userNavigateToSummaryAndClickOnSubmitButton(Stepdefinition.java:160)
+	at ✽.user Navigate to Summary and Click on submit button(file:///C:/Users/MNyinyi/Automation/CucumberHorizon/src/test/resources/features/Horizon.feature:27)
+

@@ -61,12 +61,12 @@ public class Stepdefinition extends Base {
     }
 
     @When("Capture product details and  click continue button {string},{string}")
-    public void capture_product_details_and_click_continue_button(String Channel, String string2) throws InterruptedException {
+    public void capture_product_details_and_click_continue_button(String productOption, String planOption) throws InterruptedException {
 
         homePage.ClickSelectProduct();
-        homePage.ClickSelectProductOption();
+        homePage.ClickSelectProductOption(productOption);
         homePage.ClickSelectPlan();
-        homePage.ClickSelectPlanOption();
+        homePage.ClickSelectPlanOption(planOption);
         homePage.ClickContinueButton();
 
 
@@ -157,6 +157,8 @@ public class Stepdefinition extends Base {
          homePage.clickYesBBButton();
          homePage.clickAuthenticateNowButton();
          homePage.clickConfirmDButton();
+         homePage.capturePolicyNumber();
+         homePage.openNewBrowserAndSearchPolicy();
 
     }
 

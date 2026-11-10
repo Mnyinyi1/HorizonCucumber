@@ -1,0 +1,8 @@
+Utils\BrowserFactory.class
+PageObjects\HomePage.class
+Utils\Base.class
+PageObjects\LoginPage.class
+TestRunners\TestRunner.class
+Utils\DataBaseConnection.class
+StepDefinitions\Stepdefinition.class
+Utils\TakeScreenshots.class

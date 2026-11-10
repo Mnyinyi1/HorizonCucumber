@@ -2,12 +2,18 @@ package PageObjects;
 
 import Utils.TakeScreenshots;
 import org.openqa.selenium.*;
+import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
+import java.text.Normalizer;
 
+import java.text.Normalizer;
 import java.time.Duration;
+import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import static Utils.TakeScreenshots.takeScreenshot;
 
@@ -55,16 +61,30 @@ public class HomePage {
         new WebDriverWait(driver, Duration.ofSeconds(70))
                 .until(ExpectedConditions.elementToBeClickable(SelectProduct_xpath));
         SelectProduct_xpath.click();
+
     }
 
-    @FindBy(xpath = "//li[@role='option' and @aria-label='Clientele Funeral Dignity Plan']")
-    WebElement SelectProductoption_xpath;
+public void ClickSelectProductOption(String product) {
 
-    public void ClickSelectProductOption() {
-        new WebDriverWait(driver, Duration.ofSeconds(50))
-                .until(ExpectedConditions.elementToBeClickable(SelectProductoption_xpath));
-        SelectProductoption_xpath.click();
-    }
+
+        By optionLocator = By.xpath(
+            "//div[contains(@class,'rz-dropdown-panel')]//li[@role='option'][.//span[normalize-space()='" + product + "']]"
+    );
+
+    WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(70));
+
+    WebElement option = wait.until(
+            ExpectedConditions.visibilityOfElementLocated(optionLocator)
+    );
+
+    ((JavascriptExecutor) driver)
+            .executeScript("arguments[0].scrollIntoView({block:'center'});", option);
+
+    wait.until(ExpectedConditions.elementToBeClickable(option));
+
+    ((JavascriptExecutor) driver)
+            .executeScript("arguments[0].click();", option);
+}
 
     @FindBy(xpath = "//div[contains(@class,'rz-form-field')][.//label[normalize-space()='Select Plan']]//div[contains(@class,'rz-dropdown') and not(contains(@class,'rz-state-empty'))]")
     WebElement SelectPlan_xpath;
@@ -74,23 +94,60 @@ public class HomePage {
         new WebDriverWait(driver, Duration.ofSeconds(60))
                 .until(ExpectedConditions.elementToBeClickable(SelectPlan_xpath));
         SelectPlan_xpath.click();
+        for (WebElement e : driver.findElements(
+                By.xpath("//li[@role='option' and @aria-label='Clientele Funeral Dignity Plan']"))) {
+
+            System.out.println(
+                    "Displayed=" + e.isDisplayed()
+                            + ", Text=" + e.getText()
+            );
+        }
+
     }
 
-    @FindBy(xpath = "//ul[@role='listbox']//li//span[text()='Clientèle Funeral Dignity Plan']")
-    WebElement SelectPlanOption_xpath;
+//    @FindBy(xpath = "//ul[@role='listbox']//li//span[text()='Clientèle Funeral Dignity Plan']")
+//    WebElement SelectPlanOption_xpath;
+//
+//    public void ClickSelectPlanOption() {
+//        new WebDriverWait(driver, Duration.ofSeconds(50))
+//                .until(ExpectedConditions.elementToBeClickable(SelectPlanOption_xpath));
+//        SelectPlanOption_xpath.click();
+//
+//    }
 
-    public void ClickSelectPlanOption() {
-        new WebDriverWait(driver, Duration.ofSeconds(50))
-                .until(ExpectedConditions.elementToBeClickable(SelectPlanOption_xpath));
-        SelectPlanOption_xpath.click();
 
+
+    private static final String FROM =
+            "ABCDEFGHIJKLMNOPQRSTUVWXYZ" + "àáâãäèéêëìíîïòóôõöùúûüç" + "ÀÁÂÃÄÈÉÊËÌÍÎÏÒÓÔÕÖÙÚÛÜÇ";
+    private static final String TO =
+            "abcdefghijklmnopqrstuvwxyz" + "aaaaaeeeeiiiiooooouuuuc" + "aaaaaeeeeiiiiooooouuuuc";
+
+    public void ClickSelectPlanOption(String optionText) {
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
+
+        String text = Normalizer.normalize(optionText, Normalizer.Form.NFD)
+                .replaceAll("\\p{M}", "")
+                .toLowerCase()
+                .trim();
+
+        String xpath =
+                "//div[contains(@class,'rz-dropdown-panel') and contains(@class,'rz-open')]" +
+                        "//li[@role='option' and contains(translate(@aria-label,'" + FROM + "','" + TO + "'),'" + text + "')]";
+
+        WebElement option = wait.until(
+                ExpectedConditions.visibilityOfElementLocated(By.xpath(xpath)));
+
+        try {
+            wait.until(ExpectedConditions.elementToBeClickable(option)).click();
+        } catch (ElementClickInterceptedException e) {
+            ((JavascriptExecutor) driver).executeScript("arguments[0].click();", option);
+        }
     }
-
     @FindBy(xpath = "//button[contains(@class,'rz-button') and .//span[text()='Continue']]")
     WebElement ContinueButton_xpath;
 
     public void ClickContinueButton() throws InterruptedException {
-        new WebDriverWait(driver, Duration.ofSeconds(80))
+        new WebDriverWait(driver, Duration.ofSeconds(90))
                 .until(ExpectedConditions.elementToBeClickable(ContinueButton_xpath));
         ContinueButton_xpath.click();
         Thread.sleep(9000);
@@ -101,7 +158,7 @@ public class HomePage {
     WebElement Channel_xpath;
 
     public void SelectChannel() {
-        new WebDriverWait(driver, Duration.ofSeconds(60))
+        new WebDriverWait(driver, Duration.ofSeconds(90))
                 .until(ExpectedConditions.elementToBeClickable(Channel_xpath));
         Channel_xpath.click(); // Open the dropdown
 
@@ -132,9 +189,21 @@ public class HomePage {
     WebElement PolicyType_xpath;
 
     public void ClickPolicyType() throws InterruptedException {
-        new WebDriverWait(driver, Duration.ofSeconds(50))
-                .until(ExpectedConditions.elementToBeClickable(PolicyType_xpath));
-        PolicyType_xpath.click();
+
+        WebElement policyType = new WebDriverWait(driver, Duration.ofSeconds(80))
+                .until(ExpectedConditions.visibilityOf(PolicyType_xpath));
+
+        // Scroll element into view
+        ((JavascriptExecutor) driver).executeScript(
+                "arguments[0].scrollIntoView({block:'center'});",
+                policyType);
+
+        // Wait until clickable
+        new WebDriverWait(driver, Duration.ofSeconds(20))
+                .until(ExpectedConditions.elementToBeClickable(policyType));
+
+        policyType.click();
+
         Thread.sleep(6000);
     }
 
@@ -164,7 +233,7 @@ public class HomePage {
     WebElement LegalReferenceType_xpath;
 
     public void ClickLegalReferenceType() {
-        new WebDriverWait(driver, Duration.ofSeconds(60))
+        new WebDriverWait(driver, Duration.ofSeconds(80))
                 .until(ExpectedConditions.elementToBeClickable(LegalReferenceType_xpath));
         LegalReferenceType_xpath.click();
     }
@@ -173,7 +242,7 @@ public class HomePage {
     WebElement LegalReferenceTypeOption_xpath;
 
     public void SelectLegalReferenceTypeOption() {
-        new WebDriverWait(driver, Duration.ofSeconds(50))
+        new WebDriverWait(driver, Duration.ofSeconds(90))
                 .until(ExpectedConditions.elementToBeClickable(LegalReferenceTypeOption_xpath));
         LegalReferenceTypeOption_xpath.click();
     }
@@ -185,7 +254,8 @@ public class HomePage {
         Thread.sleep(3000);
         new WebDriverWait(driver, Duration.ofSeconds(70))
                 .until(ExpectedConditions.elementToBeClickable(EnterLegalRefNo_xpath));
-        EnterLegalRefNo_xpath.sendKeys(legalRefNo);
+        EnterLegalRefNo_xpath.sendKeys(legalRefNo, Keys.TAB);
+
 
     }
 
@@ -352,10 +422,20 @@ public class HomePage {
     @FindBy(xpath = "//button[.//span[normalize-space()='Review benefit']]")
     WebElement ReviewBenefitButton_xpath;
 
-    public void ReviewBenefitButton() throws InterruptedException {
-        Thread.sleep(3000);
-        new WebDriverWait(driver, Duration.ofSeconds(70))
-                .until(ExpectedConditions.elementToBeClickable(ReviewBenefitButton_xpath));
+    public void ReviewBenefitButton() {
+
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(70));
+
+        WebElement reviewBenefit = wait.until(
+                ExpectedConditions.presenceOfElementLocated(
+                        By.xpath("//button[.//span[normalize-space()='Review benefit']]")));
+
+        ((JavascriptExecutor) driver).executeScript(
+                "arguments[0].scrollIntoView({block:'center'});",
+                reviewBenefit);
+
+        wait.until(ExpectedConditions.elementToBeClickable(ReviewBenefitButton_xpath));
+
         ReviewBenefitButton_xpath.click();
     }
     @FindBy(xpath = "//button[.//span[normalize-space()='Continue']]")
@@ -637,7 +717,7 @@ public class HomePage {
 
         By saveButtonLocator = By.xpath("//button[@type='submit']//span[text()='Save']");
 
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(20));
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(50));
 
         WebElement saveButton = wait.until(
                 ExpectedConditions.elementToBeClickable(saveButtonLocator));
@@ -763,7 +843,7 @@ public class HomePage {
         takeScreenshot(driver, "AfterClickYes");
     }
     public void clickYesBBButton() {
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
 
         WebElement yesButton = wait.until(
                 ExpectedConditions.visibilityOfElementLocated(
@@ -780,7 +860,7 @@ public class HomePage {
     }
 
     public void clickAuthenticateNowButton() {
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(70));
 
         WebElement authenticateNowButton = wait.until(
                 ExpectedConditions.visibilityOfElementLocated(
@@ -811,4 +891,59 @@ public class HomePage {
 
         takeScreenshot(driver, "AfterClickConfirm");
     }
+    private String policyNumber;
+
+    public void capturePolicyNumber() {
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+
+        WebElement notification = wait.until(
+                ExpectedConditions.visibilityOfElementLocated(
+                        By.xpath("//div[contains(@class,'rz-notification-content')]")
+                )
+        );
+
+        takeScreenshot(driver, "PolicyNotification");
+
+        String notificationText = notification.getText();
+
+        Pattern pattern = Pattern.compile("Policy:(\\d+)");
+        Matcher matcher = pattern.matcher(notificationText);
+
+        if (matcher.find()) {
+            policyNumber = matcher.group(1);
+            System.out.println("Captured Policy Number: " + policyNumber);
+        } else {
+            throw new RuntimeException("Policy number not found in notification: " + notificationText);
+        }
+    }
+    public void openNewBrowserAndSearchPolicy() {
+
+        WebDriver newDriver = new ChromeDriver();
+        newDriver.manage().window().maximize();
+
+        WebDriverWait wait = new WebDriverWait(newDriver, Duration.ofSeconds(15));
+
+        newDriver.get("https://horizontest.clientele.co.za/horizon.ui/");
+
+        WebElement searchBox = wait.until(
+                ExpectedConditions.visibilityOfElementLocated(
+                        By.id("policy-search-box")
+                )
+        );
+
+        searchBox.sendKeys(policyNumber);
+
+        WebElement searchButton = wait.until(
+                ExpectedConditions.elementToBeClickable(
+                        By.xpath("//button[.//span[normalize-space()='Search']]")
+                )
+        );
+
+        searchButton.click();
+
+        takeScreenshot(newDriver, "PolicySearch_" + policyNumber);
+
+        System.out.println("Policy searched in new browser: " + policyNumber);
+    }
+
 }
