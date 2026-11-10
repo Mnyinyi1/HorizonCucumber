@@ -2,7 +2,7 @@ Feature: Horizon
 
   @login
   Scenario Outline: As Clientele use I want to be able to login on platform
-    Given the user  has navigated to the login page
+      Given the user  has navigated to the login page
     When the user enters username "<username>"
     And the user enters password "<password>"
     And clicks on the login button
@@ -28,7 +28,7 @@ Scenario Outline: As User I want to be able to capture Quote
 
   Examples:
     |username|password|Product|Plan|SaleChannel|PolicyType|LegalRefeenceType|LegalReferenceNumber|Title|FirstName|LastName|Citzenship|Gender|Smoker|CellNo|Address1|Suburb|CityTown|Relationshiptomember|Paymentmethod|AccountHolder|Debitday|BankName|BranchCode|AccountNumber|AccountType|
-    | mnyinyi@clientele.co.za|[Onelife123$]|Clientele Funeral Dignity Plan|Clientele Funeral Dignity Plan|Broker|Member Only|ID Number|9708165605873|Mr|Nande|Wawa|South African|Male|Non-Smoker|07258698745|123 Main Street|Suburbia|City ville|Member|Debit Order|Minal Longwe|31|First National Bank|Branch 560|1234|Savings Account|
+    | mnyinyi@clientele.co.za|Goduka123$|Classic Legal|Classic Legal|Broker|Member Only|ID Number|9710299640024|Mr|Nande|Wawa|South African|Male|Non-Smoker|07258628745|123 Main Street|Suburbia|City ville|Member|Debit Order|Minal Longwe|30|First National Bank|Branch 560|1234|Savings Account|
 
 
 

@@ -44,7 +44,7 @@ public class LoginPage {
         new WebDriverWait(driver, Duration.ofSeconds(20))
                 .until(ExpectedConditions.elementToBeClickable(password_xpath));
         password_xpath.sendKeys(password);
-
+        TakeScreenshots.takeScreenshot(driver, "LoginPage");
 
 
     }
@@ -54,7 +54,7 @@ public class LoginPage {
         new WebDriverWait(driver, Duration.ofSeconds(30))
                 .until(ExpectedConditions.elementToBeClickable(Signin_xpath));
         Signin_xpath.click();
-       TakeScreenshots.takeScreenshot(driver, "LoginPage");
+       //TakeScreenshots.takeScreenshot(driver, "LoginPage");
     }
 
         public void DisplayError(String expectedMessage) {
