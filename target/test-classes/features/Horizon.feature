@@ -28,7 +28,7 @@ Scenario Outline: As User I want to be able to capture Quote
 
   Examples:
     |username|password|Product|Plan|SaleChannel|PolicyType|LegalRefeenceType|LegalReferenceNumber|Title|FirstName|LastName|Citzenship|Gender|Smoker|CellNo|Address1|Suburb|CityTown|Relationshiptomember|Paymentmethod|AccountHolder|Debitday|BankName|BranchCode|AccountNumber|AccountType|
-    | mnyinyi@clientele.co.za|Goduka123$|Classic Legal|Classic Legal|Broker|Member Only|ID Number|9710299640024|Mr|Nande|Wawa|South African|Male|Non-Smoker|07258628745|123 Main Street|Suburbia|City ville|Member|Debit Order|Minal Longwe|30|First National Bank|Branch 560|1234|Savings Account|
+    | mnyinyi@clientele.co.za|Goduka123$|Classic Legal|Classic Legal|Broker|Member Only|ID Number|9711275413857|Mr|Nande|Wawa|South African|Male|Non-Smoker|07258628745|123 Main Street|Suburbia|City ville|Member|Debit Order|Minal Longwe|30|First National Bank|Branch 560|1234|Savings Account|
 
 
 

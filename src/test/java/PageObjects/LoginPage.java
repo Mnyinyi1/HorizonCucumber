@@ -48,6 +48,11 @@ public class LoginPage {
 
 
     }
+    public  void login(String username, String password) {
+        EnterUsername(username);
+        EnterPassword(password);
+        clickSignUp();
+    }
 
     public void clickSignUp() {
 
@@ -74,4 +79,5 @@ public class LoginPage {
 
             }
         }
+
 }

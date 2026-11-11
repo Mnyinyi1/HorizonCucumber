@@ -924,6 +924,9 @@ public void ClickSelectProductOption(String product) {
         WebDriverWait wait = new WebDriverWait(newDriver, Duration.ofSeconds(15));
 
         newDriver.get("https://horizontest.clientele.co.za/horizon.ui/");
+        // Login
+        LoginPage loginPage = new LoginPage(newDriver);
+        loginPage.login("mnyinyi@clientele.co.za", "Goduka123$");
 
         WebElement searchBox = wait.until(
                 ExpectedConditions.visibilityOfElementLocated(
